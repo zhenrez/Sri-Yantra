@@ -8,6 +8,8 @@ Download the repository ZIP, extract it, and double-click **`START-SRI-WORKBENCH
 
 GitHub and Windows intentionally do not permit a web link to download and execute arbitrary code silently. The safe minimum is therefore one double-click **after** downloading and extracting the repository. Windows SmartScreen may ask you to confirm a newly downloaded script.
 
+Every push is also exercised by the `Windows launcher verification` workflow, which repeats virtual-environment creation, requirements installation, geometry compilation, and seal verification on a clean Windows runner.
+
 The research contract now ships with a SUN-free native ledger, two noncollapsed provenance maps, a preregistered negative-control suite, an explicit exposure ledger, a frozen research-role map, and a content-addressed seal. `P_topology` maps a graph feature to a geometric entity; `P_construction` maps a geometric entity to a derivational dependency. Every admitted claim has two orthogonal coordinates: relation class (`GEOMETRIC`, `CONSTRUCTION`, `SOLVER`, `RITUAL`, `SYMBOLIC`) and modal status (`NECESSARY`, `OPTIONAL`, `REALIZATION_SPECIFIC`, `UNKNOWN`). Read the complete contract at `/api/native`; regenerate the seal with `python3 seal_native.py` after an intentional native-data revision.
 
 Manual alternative: use either `py -3.13` or `py -3.11` in place of `python3`. Run `py -3.13 compile_geometry.py`, then `py -3.13 server.py --port 8765`; open `http://127.0.0.1:8765`. No npm installation is required. `workbench.sqlite3` is created at startup. Data edits stay there. Export creates a JSON snapshot of research state.

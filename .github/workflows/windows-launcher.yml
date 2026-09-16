@@ -1,0 +1,23 @@
+name: Windows launcher verification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-windows-launcher:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Run isolated bootstrap and seal verification
+        shell: powershell
+        run: .\scripts\start-windows.ps1 -VerifyOnly

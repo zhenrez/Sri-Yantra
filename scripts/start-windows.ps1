@@ -1,5 +1,9 @@
 [CmdletBinding()]
-param([int]$PreferredPort = 8765)
+param(
+    [int]$PreferredPort = 8765,
+    [switch]$VerifyOnly,
+    [switch]$NoBrowser
+)
 
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
@@ -114,6 +118,11 @@ try {
         throw "Seal mismatch. Expected $ExpectedSeal but rebuilt $ActualSeal. The server was not launched."
     }
 
+    if ($VerifyOnly) {
+        Write-Host "`nWindows bootstrap verification passed: $ActualSeal" -ForegroundColor Green
+        exit 0
+    }
+
     $Port = Get-OpenPort $PreferredPort
     $Url = "http://127.0.0.1:$Port/"
     Write-Step "Launching the workbench at $Url"
@@ -129,7 +138,7 @@ try {
     }
     if (-not $Ready) { throw 'The server did not become ready within five seconds.' }
 
-    Start-Process $Url
+    if (-not $NoBrowser) { Start-Process $Url }
     Write-Host "`nWorkbench running. Keep this window open; press Ctrl+C to stop." -ForegroundColor Green
     try { Wait-Process -Id $Server.Id } finally {
         if (-not $Server.HasExited) { Stop-Process -Id $Server.Id -Force }
