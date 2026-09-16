@@ -1,2 +1,17 @@
-# Sri-Yantra
-Native Śrī Yantra geometry, provenance, evidence controls, preregistration, and calibration workbench.
+# Śrī workbench
+
+Local runnable vertical slice: two solved geometry profiles, a complete 69-vertex/142-edge/74-bounded-region planar cell complex, the traditional 43-triangle subset, selectable SVG, and independently stored SQLite overlays and n-ary events. Designed so AYLI can consume compiled geometry and overlay exports later without changing the geometry source.
+
+The research contract now ships with a SUN-free native ledger, two noncollapsed provenance maps, a preregistered negative-control suite, an explicit exposure ledger, a frozen research-role map, and a content-addressed seal. `P_topology` maps a graph feature to a geometric entity; `P_construction` maps a geometric entity to a derivational dependency. Every admitted claim has two orthogonal coordinates: relation class (`GEOMETRIC`, `CONSTRUCTION`, `SOLVER`, `RITUAL`, `SYMBOLIC`) and modal status (`NECESSARY`, `OPTIONAL`, `REALIZATION_SPECIFIC`, `UNKNOWN`). Read the complete contract at `/api/native`; regenerate the seal with `python3 seal_native.py` after an intentional native-data revision.
+
+Run: `python3 compile_geometry.py`, then `python3 server.py --port 8765`; open `http://127.0.0.1:8765`. Python 3 only; no npm install. `workbench.sqlite3` is created at startup. Data edits stay there. Export creates a JSON snapshot of research state.
+
+Mathematical authority: [Chiodo 2021](https://comptes-rendus.academie-sciences.fr/mathematique/articles/10.5802/crmath.163/), whose minimal conditions define the four-parameter concurrent family. Checked implementation: `geometry/source.json` copied from [TheHardikDewra/sri-yantra](https://github.com/TheHardikDewra/sri-yantra), `public/data/sri-yantra.json`, MIT license, commit `1da047f4641a9ea95457080801f2438e634d668a`. The compiler stamps the implementation commit and byte SHA-256 separately from Chiodo's authority metadata and independently recomputes 21 float64 Chiodo-condition checks. Huet's parameter values select one realization; the second rational profile is experimental and inherits only the upstream label “traditional.”
+
+The compiler orders traditional face IDs clockwise from north within each enclosure, separately per profile. It reconstructs atomic edges by splitting every exported polygon side at collinear arrangement vertices, then derives edge adjacency and shared-corner contact. See `AUDIT.md` for the Chiodo/code/SYG-SYD cross-check. Outer petals, gates, circles, generating-parent provenance, 3D surfaces and individual source-backed deity positions remain next slices. Imported traditional deity identities should be overlay records with lineage and passage, never fields in `geometry/compiled.json`.
+
+Current database tables: overlays, entities, placements, relation_events, event_participants. The three-role event represents an overlay-specific proposed `A + B → C` relation. Its feature link is a binding and carries no claim that Śrī Vidyā assigns this meaning to three corners.
+
+Scientific limit: Śrī is a `PARTIALLY_EXPOSED_TYPE_II_CALIBRATION_DOMAIN`. SUN, its ratios, the printed route motif, and the exceptional-boundary comparison were already known when the observable families were selected. The sealed record can support prospective calibration, robustness and discrimination tests, but it cannot honestly be reported as an untouched blind discovery. A later untouched domain is required for external blind validation. Kulaichev and Mahesh remain explicit placeholders until their primary texts and tables are ingested.
+
+Namespace rule: historical SUN snapshots remain unchanged, including their old `mathcal-R` notation. The current research architecture has no ROSETTA component. The lawful adapter/model-construction function remains real but unnamed until the repository/application/snapshot namespace collision is deliberately resolved.

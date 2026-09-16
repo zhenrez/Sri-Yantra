@@ -1,0 +1,35 @@
+{
+  "schema":"sri-native-preregistration-v1",
+  "status":"PARTIALLY_EXPOSED_TYPE_II_CALIBRATION_DOMAIN",
+  "contamination_statement":"SUN, its ratios, the printed SYG route motif and its proposed exceptional-boundary analogy were known before this observable set was selected. This protocol may support prospective calibration, robustness and discrimination tests but must not be described as a blind discovery or untouched prediction test.",
+  "exposure_ledger":"sri-exposure-ledger-v1.json",
+  "native_inputs":["Chiodo conditions and construction","pinned coordinate realizations","coordinate-derived planar cell complex","quarantined printed SYG/SYD comparison","future authenticated Kulaichev and Mahesh sources"],
+  "dependency_classes":["GEOMETRIC","CONSTRUCTION","SOLVER","RITUAL","SYMBOLIC"],
+  "modal_statuses":["NECESSARY","OPTIONAL","REALIZATION_SPECIFIC","UNKNOWN"],
+  "sealed_observable_families":[
+    {"id":"O1","name":"incidence topology","measures":["V/E/F counts","degree multiset","edge-cell incidence","vertex-side incidence","face-size distribution","dual graph"]},
+    {"id":"O2","name":"native geometric types","measures":["up/down parent orientation","base/leg/apex/base-point roles","triple-concurrency classes","Marma classes when authenticated"]},
+    {"id":"O3","name":"normalized metric observables","measures":["signed axial coordinates normalized by circumcircle radius","parent base height/apex height/half-width","leg slopes","cell areas","justified cross-ratios"]},
+    {"id":"O4","name":"realization-family behavior","measures":["topological invariance","metric variance","degeneracy boundaries","parameter sensitivity"]},
+    {"id":"O5","name":"construction dependency","measures":["source-native operand/output DAG","two-fold construction branches","Apollonius candidates and selection"],"warning":"must not be conflated with O1 geometric dependence"},
+    {"id":"O6","name":"solver dependence","measures":["iteration/root-find/elimination steps by implementation"],"warning":"failure or disappearance under an alternative solver does not change O1"}
+  ],
+  "excluded_from_native_phase":["SUN labels","2/3, 3/4, 1/2 target matching","16/15 or 15/16 target matching","Tree-of-Life addresses","ritual symbolism used as geometry","post-hoc relocation of candidate paths"],
+  "negative_controls":[
+    {"id":"N1","challenge":"ordinary geometric concurrency"},
+    {"id":"N2","challenge":"nested solver recursion"},
+    {"id":"N3","challenge":"constructional reuse of prior intersections"},
+    {"id":"N4","challenge":"parameterized realization family"},
+    {"id":"N5","challenge":"symbolic inward/outward return"},
+    {"id":"N6","challenge":"two independent paths reaching one point"},
+    {"id":"N7","challenge":"repeated graph motif without geometric provenance"},
+    {"id":"N8","challenge":"isolated numerical hit such as 2/3"}
+  ],
+  "future_experiments":[
+    {"id":"E1","name":"KEYSTONE-on-anonymized-Sri","classification":"TYPE_II_CALIBRATION_NOT_BLIND_VALIDATION","prerequisite":"independent anonymization, frozen exposure ledger and completed KEYSTONE Phase-1 verifier","separate_from":"E2"},
+    {"id":"E2","name":"frozen-SUN-on-sealed-Sri","prerequisite":"native dataset seal plus mapping freeze","separate_from":"E1"}
+  ],
+  "outcome_classes":["FAIL","TOPOLOGY_ONLY","MORPHOLOGY_WITHOUT_RATIOS","REPEATED_NATIVE_OPERATOR_RECOVERY","EXCEPTIONAL_BOUNDARY_RECOVERY"],
+  "anti-cherry-picking":"Mappings, paths, observables, tolerances, exposure classifications, and exclusion rules must be versioned before scoring; failed candidates remain retained.",
+  "external_validation_requirement":"A later genuinely untouched domain is required for external blind validation."
+}

@@ -1,0 +1,27 @@
+{
+  "schema":"sri-provenance-map-v1",
+  "P_topology":{
+    "status":"COMPLETE_FOR_PINNED_PROFILES",
+    "authority":"Chiodo conditions implemented by hardik-1da047f",
+    "profiles":["huet","traditional"],
+    "objects":{"generating_triangles":9,"vertices":69,"atomic_edges":142,"bounded_regions":74,"traditional_triangular_regions":43},
+    "edge_provenance":"Every atomic edge records generating triangle, orientation, and base/leg role.",
+    "vertex_provenance":"Every vertex records incident parent sides and native apex/base-point/intersection/triple-concurrency types.",
+    "address_space":"profile-scoped deterministic IDs; equal ordinals across profiles do not assert cross-profile identity"
+  },
+  "P_construction":{
+    "status":"PARTIAL_CHIODO_ONLY",
+    "maps":"coordinate geometric entity -> construction step/dependency",
+    "available":"Chiodo conditions and high-level two-fold/Apollonius construction claims",
+    "not_available":"complete point-by-point Chiodo construction DAG and authenticated Mahesh/Kulaichev derivational ledgers",
+    "non_equivalence":"P_construction does not establish P_topology and is not inferred from graph adjacency"
+  },
+  "printed_syg_mapping":{
+    "status":"UNRESOLVED_QUARANTINED",
+    "required_bridge":"SYG numbered vertex/edge <-> coordinate vertex/atomic edge <-> generating triangle/side",
+    "blockers":["No coordinate key accompanies the supplied numbering.","The printed adjacency has 140 edges, but the 69-vertex/74-bounded-face coordinate arrangement has 142.","The printed face-boundary pairs do not directly agree with its primal adjacency labels."],
+    "allowed_use":"motif hypothesis and comparison only; not canonical provenance"
+  },
+  "mahesh_mapping":{"status":"WAITING_FOR_PRIMARY_SOURCE","required":"M1-M18 coordinates, triangle-triple incidence table, orientation convention, and construction order"},
+  "firewall":["P_topology and P_construction are stored separately.","Graph structure cannot substitute for non-structural geometric dependence.","Construction order cannot be promoted to intrinsic necessity without an independent proof."]
+}

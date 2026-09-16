@@ -1,0 +1,37 @@
+{
+  "schema": "sri-native-seal-v1",
+  "scope": "native Sri dataset; excludes SUN comparison results",
+  "entries": [
+    {
+      "path": "geometry/compiled.json",
+      "sha256": "92d2e79871480d4ac6a74bcc6d30d81cc5338b3ca487187159a38f8c81e6c302",
+      "bytes": 214048
+    },
+    {
+      "path": "native/ledger.json",
+      "sha256": "1c5a1eb8c1cf3d4abedd24e0f31cfd22f16e1365a99dcd61a2edb5c0013388e4",
+      "bytes": 6519
+    },
+    {
+      "path": "native/provenance-map.json",
+      "sha256": "ea0e5c62efd3ff601f078218b156210ae96ed848d2fde832fe2e6428b7cd8c76",
+      "bytes": 2122
+    },
+    {
+      "path": "preregistration/sri-native-protocol-v1.json",
+      "sha256": "868af7c862021081d72bba0bca39c5f230a6abb5595a1240d4ab15703bc90401",
+      "bytes": 3715
+    },
+    {
+      "path": "preregistration/sri-exposure-ledger-v1.json",
+      "sha256": "8f686c19cd6cf8a578d694f7e31aa61f56837d4623b1a7fd1c11cd2ee286d868",
+      "bytes": 3808
+    },
+    {
+      "path": "preregistration/research-architecture-v1.json",
+      "sha256": "68a2920c0eeae1a84396cbba4037f28c5932e04e02d0df1f31f60ed2b4b6ac4d",
+      "bytes": 1511
+    }
+  ],
+  "manifest_sha256": "1ba403dafa112f331f02c8c9195fbee709f696647e819ec124f009765dad4706"
+}

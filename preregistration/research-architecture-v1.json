@@ -1,0 +1,24 @@
+{
+  "schema":"research-architecture-v1",
+  "roles":[
+    {"id":"THREAD","role":"historical anomaly: explicit harmonicization of nonmusical order"},
+    {"id":"MONOCHORD","role":"historical harmonic control corpus"},
+    {"id":"COUNTERPOINT","role":"independent derivation channel"},
+    {"id":"SUN","role":"exact musical/TOL realization that exposed the candidate morphology"},
+    {"id":"CHORD","role":"candidate minimal representation-independent relational theory"},
+    {"id":"KEYSTONE","role":"adversarial verifier required to reject partial and impostor matches"},
+    {"id":"SRI","role":"partially exposed Type-II adversarial calibration domain"}
+  ],
+  "invariants":[
+    "SUN is an instance/source; CHORD is the general hypothesis; KEYSTONE is the test.",
+    "The software architecture is not the research architecture.",
+    "Repository names, research-role names and mathematical notation are independent namespaces.",
+    "Historical SUN snapshots remain unchanged, including historical uses of mathcal-R."
+  ],
+  "adapter_function":{
+    "status":"REAL_BUT_UNNAMED",
+    "role":"lawful native-domain model construction and cross-representation adaptation",
+    "namespace_rule":"No new architectural component named ROSETTA until the existing repository/application/snapshot collision is deliberately resolved."
+  },
+  "formal_center":"Find the smallest relational structure R_min such that independently defined models satisfy it; do not substitute pairwise resemblance for common entailment."
+}

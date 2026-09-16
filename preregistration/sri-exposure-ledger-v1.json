@@ -1,0 +1,75 @@
+{
+  "schema":"sri-exposure-ledger-v1",
+  "classification":"PARTIALLY_EXPOSED_TYPE_II_CALIBRATION_DOMAIN",
+  "purpose":"Separate prior exposure from still-eligible prospective tests. Listed material may calibrate or falsify KEYSTONE but may not be reported as blind prediction.",
+  "exposed_before_native_seal":[
+    {
+      "id":"X1",
+      "item":"Printed SYG route motif hypothesis",
+      "detail":"One numbered route was read as three ordinary motifs followed by an altered terminal motif; a comparison route was read as four ordinary motifs, with both ending at node 26.",
+      "node_routes":[
+        [69,65,67,66,59,61,60,51,53,52,44,45,39,40,26],
+        [1,3,5,4,9,11,10,17,19,18,25,27,26]
+      ],
+      "status":"EXPOSED_HYPOTHESIS_NOT_GEOMETRICALLY_PROVEN"
+    },
+    {
+      "id":"X2",
+      "item":"SUN comparison to the printed route motif",
+      "detail":"The 3-plus-altered versus 4-ordinary reading was explicitly compared with three ordinary SUN generations plus an exceptional terminal operation versus four ordinary generations.",
+      "status":"EXPOSED_COMPARISON"
+    },
+    {
+      "id":"X3",
+      "item":"Candidate SUN operator values",
+      "detail":"The values 2/3, 3/4, 1/2, 16/15 and 15/16 were known before observable selection.",
+      "status":"EXPOSED_TARGETS_EXCLUDED_FROM_NATIVE_DISCOVERY"
+    },
+    {
+      "id":"X4",
+      "item":"Isolated Mahesh 2d/3 report",
+      "detail":"A reported Kuja-line height of 2d/3 was noticed and explicitly rejected as recovery of the repeated SUN operator. The primary Mahesh source is not yet authenticated in this build.",
+      "status":"EXPOSED_UNVERIFIED_FALSE_POSITIVE_CHALLENGE"
+    },
+    {
+      "id":"X5",
+      "item":"Broad structural ingredients",
+      "detail":"Recursion, construction reuse, parameter families, multiple routes, convergence, inward/outward traversal, manifestation/return symbolism, concurrency and dependency were investigated before sealing.",
+      "status":"EXPOSED_GENERIC_INGREDIENTS"
+    },
+    {
+      "id":"X6",
+      "item":"Named prior-art families",
+      "detail":"Kulaichev, Huet, Chiodo, Mahesh, geometric-constraint theory and practitioner traditions were already identified as relevant source families.",
+      "status":"EXPOSED_SOURCE_LANDSCAPE"
+    }
+  ],
+  "prospective_but_not_pristine_targets":[
+    {
+      "id":"Y1",
+      "target":"Numbered SYG feature to coordinate geometry mapping",
+      "eligibility":"PROSPECTIVE_CALIBRATION",
+      "condition":"Mapping method and tolerances must be frozen before resolving identities. Printed-document inconsistencies must not be silently repaired to favor the route hypothesis."
+    },
+    {
+      "id":"Y2",
+      "target":"Generating triangle, side type and concurrency class of the exposed route nodes",
+      "eligibility":"PROSPECTIVE_CALIBRATION",
+      "condition":"Derived only through the frozen provenance procedure."
+    },
+    {
+      "id":"Y3",
+      "target":"Behavior of mapped relations across admissible Sri realizations",
+      "eligibility":"PROSPECTIVE_CALIBRATION",
+      "condition":"Parameter sampling, equivalence rules and failure criteria must precede scoring."
+    },
+    {
+      "id":"Y4",
+      "target":"Native exceptional boundary structure not selected from SUN labels",
+      "eligibility":"PROSPECTIVE_WITH_CONTAMINATION_CAVEAT",
+      "condition":"Positive evidence is stronger than retrospective similarity but is not a pristine blind result because the exceptional-boundary hypothesis is already exposed."
+    }
+  ],
+  "future_external_requirement":"A later domain with no pre-inspection of target motifs or values is required for genuinely blind validation.",
+  "reporting_rule":"Never relabel an exposed item as withheld, unseen, blind, independently predicted or independently recovered."
+}

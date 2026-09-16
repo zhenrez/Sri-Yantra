@@ -1,0 +1,50 @@
+{
+  "schema": "sri-native-ledger-v1",
+  "scope": "Sri Yantra native formalization; no SUN labels or cross-domain correspondences",
+  "dependency_classes": [
+    {"id":"GEOMETRIC","definition":"Relations necessary in the target geometric configuration, independent of a particular construction or solver."},
+    {"id":"CONSTRUCTION","definition":"An explicit construction step uses previously available objects to construct a later object."},
+    {"id":"SOLVER","definition":"Order or dependency introduced by an algorithm used to find a realization; not automatically intrinsic to the geometry."},
+    {"id":"RITUAL","definition":"Ordered ritual, contemplative, or liturgical traversal."},
+    {"id":"SYMBOLIC","definition":"Interpretive assignment, correspondence, or meaning attached to a geometric or ritual object."}
+  ],
+  "modal_statuses": [
+    {"id":"NECESSARY","definition":"Required under the stated admissibility model or invariant across the declared scope."},
+    {"id":"OPTIONAL","definition":"Permitted but not required under the stated scope."},
+    {"id":"REALIZATION_SPECIFIC","definition":"True of a named realization, construction, solver, lineage, or representation but not established as intrinsic."},
+    {"id":"UNKNOWN","definition":"Modal force has not been established."}
+  ],
+  "native_layers": [
+    {"id":"G_INTRINSIC","contains":"geometric entities, incidences, constraints, symmetry and realization-family facts"},
+    {"id":"G_CONSTRUCTION","contains":"derivational construction objects and operand/output dependencies"},
+    {"id":"G_INTERPRETATION","contains":"ritual traversals and symbolic assignments, source- and lineage-scoped"}
+  ],
+  "sources": [
+    {"id":"chiodo-2021","authority":"PRIMARY_MATHEMATICAL","title":"On the construction of the Sri Yantra","author":"Alessandro Chiodo","doi":"10.5802/crmath.163","status":"INSPECTED_LOCAL_PDF"},
+    {"id":"hardik-1da047f","authority":"IMPLEMENTATION","title":"TheHardikDewra/sri-yantra","commit":"1da047f4641a9ea95457080801f2438e634d668a","status":"CODE_AND_EXPORT_INSPECTED"},
+    {"id":"syg-syd-2018","authority":"COMPARISON_ARTIFACT","title":"Sri Yantra Graph and Dual","status":"INSPECTED_INTERNAL_INCONSISTENCY"},
+    {"id":"huet-2002","authority":"PRIMARY_MATHEMATICAL","title":"Sri Yantra Geometry","status":"REFERENCED_BY_CHIODO_AND_IMPLEMENTATION"},
+    {"id":"kulaichev-1984","authority":"PRIMARY_REQUIRED","title":"Sriyantra and its Mathematical Properties","status":"NOT_INGESTED_THIS_BUILD"},
+    {"id":"mahesh","authority":"PRIMARY_REQUIRED","title":"Mahesh construction / Marma-Sthana incidence source","status":"NOT_INGESTED_THIS_BUILD"}
+  ],
+  "claims": [
+    {"id":"c-family","layer":"G_INTRINSIC","class":"GEOMETRIC","modal_status":"NECESSARY","realization_scope":"Chiodo minimal-concurrency model","source":"chiodo-2021","exactness":"EXACT","statement":"Up to rescaling and translation, minimally concurrent realizations form a four-parameter family."},
+    {"id":"c-circle","layer":"G_INTRINSIC","class":"GEOMETRIC","modal_status":"NECESSARY","realization_scope":"Chiodo minimal-concurrency family","source":"chiodo-2021","exactness":"EXACT","statement":"Generating triangles t3 and t7 share a circumcircle."},
+    {"id":"c-apex-base","layer":"G_INTRINSIC","class":"GEOMETRIC","modal_status":"NECESSARY","realization_scope":"Chiodo minimal-concurrency family","source":"chiodo-2021","exactness":"EXACT","statement":"Seven specified triangle apices coincide with base points of other generating triangles."},
+    {"id":"c-concurrence","layer":"G_INTRINSIC","class":"GEOMETRIC","modal_status":"NECESSARY","realization_scope":"Chiodo minimal-concurrency family","source":"chiodo-2021","exactness":"EXACT","statement":"Twelve specified downward-leg/base/upward-leg triples concur on each side of the symmetry axis."},
+    {"id":"c-twofold","layer":"G_CONSTRUCTION","class":"CONSTRUCTION","modal_status":"REALIZATION_SPECIFIC","realization_scope":"Chiodo straightedge-and-compass construction","source":"chiodo-2021","exactness":"EXACT_FOR_THIS_CONSTRUCTION","statement":"The middle construction is two-fold, with corresponding constructions beginning from points 5=Z and 6=Q."},
+    {"id":"c-apollonius","layer":"G_CONSTRUCTION","class":"CONSTRUCTION","modal_status":"REALIZATION_SPECIFIC","realization_scope":"Chiodo straightedge-and-compass construction","source":"chiodo-2021","exactness":"EXACT_FOR_THIS_CONSTRUCTION","statement":"Completion reduces to a circle-line-point Apollonius problem with four candidate circles and geometric selection conditions."},
+    {"id":"c-hardik-solve","layer":"G_CONSTRUCTION","class":"SOLVER","modal_status":"REALIZATION_SPECIFIC","realization_scope":"hardik-1da047f implementation","source":"hardik-1da047f","exactness":"IMPLEMENTATION","statement":"A one-dimensional high-precision root solve produces realizations satisfying the encoded Chiodo conditions."},
+    {"id":"c-syg","layer":"G_INTRINSIC","class":"GEOMETRIC","modal_status":"UNKNOWN","realization_scope":"undocumented printed numbering","source":"syg-syd-2018","exactness":"QUARANTINED","statement":"The printed primal adjacency has 69 vertices and 140 edges, while its face table implies a different 142-edge structure; numbering correspondence is unresolved."},
+    {"id":"c-kulaichev-placeholder","layer":"G_CONSTRUCTION","class":"SOLVER","modal_status":"UNKNOWN","realization_scope":"unknown until primary inspection","source":"kulaichev-1984","exactness":"UNVERIFIED_PLACEHOLDER","statement":"Iterative/nested solver-process claims await inspection of the primary text before entering the authoritative ledger."},
+    {"id":"c-mahesh-placeholder","layer":"G_CONSTRUCTION","class":"CONSTRUCTION","modal_status":"UNKNOWN","realization_scope":"unknown until primary inspection","source":"mahesh","exactness":"UNVERIFIED_PLACEHOLDER","statement":"M1-M18 incidence and construction-dependency claims await inspection of the primary source and coordinate table."}
+  ],
+  "invariants": [
+    "GEOMETRIC != CONSTRUCTION != SOLVER != RITUAL != SYMBOLIC",
+    "Relation class and modal status are orthogonal coordinates.",
+    "A construction order does not by itself establish an invariant dependency of every realization.",
+    "A solver loop may disappear under another solver without changing the target geometry.",
+    "Ritual direction and symbolic meaning are overlays, not geometric edges.",
+    "No SUN, music, Tree-of-Life, Fludd, Kepler, or cross-domain label may enter the native geometry ledger."
+  ]
+}
