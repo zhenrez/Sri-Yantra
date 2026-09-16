@@ -2,9 +2,15 @@
 
 Local runnable vertical slice: two solved geometry profiles, a complete 69-vertex/142-edge/74-bounded-region planar cell complex, the traditional 43-triangle subset, selectable SVG, and independently stored SQLite overlays and n-ary events. Designed so AYLI can consume compiled geometry and overlay exports later without changing the geometry source.
 
+## Windows 11: double-click start
+
+Download the repository ZIP, extract it, and double-click **`START-SRI-WORKBENCH.cmd`**. The launcher selects an official CPython 3.13 or 3.11 installation, creates `.venv`, installs `requirements.txt`, removes inherited Python/Conda/NVIDIA/CUDA variables from the launcher process, verifies the geometry seal, starts the local server, and opens the browser. It does not modify or uninstall any global Python, NVIDIA, CUDA, or Conda setup. Keep the launcher window open while using the workbench; close it or press Ctrl+C to stop.
+
+GitHub and Windows intentionally do not permit a web link to download and execute arbitrary code silently. The safe minimum is therefore one double-click **after** downloading and extracting the repository. Windows SmartScreen may ask you to confirm a newly downloaded script.
+
 The research contract now ships with a SUN-free native ledger, two noncollapsed provenance maps, a preregistered negative-control suite, an explicit exposure ledger, a frozen research-role map, and a content-addressed seal. `P_topology` maps a graph feature to a geometric entity; `P_construction` maps a geometric entity to a derivational dependency. Every admitted claim has two orthogonal coordinates: relation class (`GEOMETRIC`, `CONSTRUCTION`, `SOLVER`, `RITUAL`, `SYMBOLIC`) and modal status (`NECESSARY`, `OPTIONAL`, `REALIZATION_SPECIFIC`, `UNKNOWN`). Read the complete contract at `/api/native`; regenerate the seal with `python3 seal_native.py` after an intentional native-data revision.
 
-Run: `python3 compile_geometry.py`, then `python3 server.py --port 8765`; open `http://127.0.0.1:8765`. Python 3 only; no npm install. `workbench.sqlite3` is created at startup. Data edits stay there. Export creates a JSON snapshot of research state.
+Manual alternative: use either `py -3.13` or `py -3.11` in place of `python3`. Run `py -3.13 compile_geometry.py`, then `py -3.13 server.py --port 8765`; open `http://127.0.0.1:8765`. No npm installation is required. `workbench.sqlite3` is created at startup. Data edits stay there. Export creates a JSON snapshot of research state.
 
 Mathematical authority: [Chiodo 2021](https://comptes-rendus.academie-sciences.fr/mathematique/articles/10.5802/crmath.163/), whose minimal conditions define the four-parameter concurrent family. Checked implementation: `geometry/source.json` copied from [TheHardikDewra/sri-yantra](https://github.com/TheHardikDewra/sri-yantra), `public/data/sri-yantra.json`, MIT license, commit `1da047f4641a9ea95457080801f2438e634d668a`. The compiler stamps the implementation commit and byte SHA-256 separately from Chiodo's authority metadata and independently recomputes 21 float64 Chiodo-condition checks. Huet's parameter values select one realization; the second rational profile is experimental and inherits only the upstream label “traditional.”
 
