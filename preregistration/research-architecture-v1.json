@@ -13,12 +13,12 @@
     "SUN is an instance/source; CHORD is the general hypothesis; KEYSTONE is the test.",
     "The software architecture is not the research architecture.",
     "Repository names, research-role names and mathematical notation are independent namespaces.",
-    "Historical SUN snapshots remain unchanged, including historical uses of mathcal-R."
+    "Historical SUN snapshots remain unchanged, including historical uses of \\mathcal{R}."
   ],
   "adapter_function":{
     "status":"REAL_BUT_UNNAMED",
     "role":"lawful native-domain model construction and cross-representation adaptation",
     "namespace_rule":"No new architectural component named ROSETTA until the existing repository/application/snapshot collision is deliberately resolved."
   },
-  "formal_center":"Find the smallest relational structure R_min such that independently defined models satisfy it; do not substitute pairwise resemblance for common entailment."
+  "formal_center":"Find the smallest relational structure \\mathfrak{R}_{min} such that independently defined models satisfy it; do not substitute pairwise resemblance for common entailment."
 }

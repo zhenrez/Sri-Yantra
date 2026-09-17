@@ -4,18 +4,18 @@
   "entries": [
     {
       "path": "geometry/compiled.json",
-      "sha256": "92d2e79871480d4ac6a74bcc6d30d81cc5338b3ca487187159a38f8c81e6c302",
-      "bytes": 214048
+      "sha256": "fbea34feb4b6f959f708469726526aef29b3d574691fce2fb9c527a4529b218a",
+      "bytes": 219462
     },
     {
       "path": "native/ledger.json",
-      "sha256": "1c5a1eb8c1cf3d4abedd24e0f31cfd22f16e1365a99dcd61a2edb5c0013388e4",
-      "bytes": 6519
+      "sha256": "f778aae4d08d1f695518e23b046d9b84e11f964afe73ece0729e686b3dd87411",
+      "bytes": 6589
     },
     {
       "path": "native/provenance-map.json",
-      "sha256": "ea0e5c62efd3ff601f078218b156210ae96ed848d2fde832fe2e6428b7cd8c76",
-      "bytes": 2122
+      "sha256": "6cf68871d2d4d93c5c2b320e20ab1377d1419f157911fdcfb0f61c3174e081c2",
+      "bytes": 2587
     },
     {
       "path": "preregistration/sri-native-protocol-v1.json",
@@ -29,9 +29,9 @@
     },
     {
       "path": "preregistration/research-architecture-v1.json",
-      "sha256": "68a2920c0eeae1a84396cbba4037f28c5932e04e02d0df1f31f60ed2b4b6ac4d",
-      "bytes": 1511
+      "sha256": "7cd496e80f6b3f0eff64b907d76a9317bc1c3f843198300f26a1fa235c1fafa6",
+      "bytes": 1528
     }
   ],
-  "manifest_sha256": "1ba403dafa112f331f02c8c9195fbee709f696647e819ec124f009765dad4706"
+  "manifest_sha256": "ad6ffdfa97ec6478e40cac80199a871fbc8c158246cdd53e93e751d8d1c8ac52"
 }

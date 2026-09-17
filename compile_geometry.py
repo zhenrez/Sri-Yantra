@@ -1,5 +1,6 @@
 """Compile pinned solver output into a deterministic planar cell complex."""
 import hashlib, json, math
+from decimal import Decimal, localcontext
 from pathlib import Path
 
 ROOT=Path(__file__).parent; src=ROOT/'geometry/source.json'; raw=src.read_bytes(); data=json.loads(raw)
@@ -23,28 +24,49 @@ def parameter(a,b,p):
     dx,dy=b[0]-a[0],b[1]-a[1]; den=dx*dx+dy*dy
     return ((p[0]-a[0])*dx+(p[1]-a[1])*dy)/den
 
-out={'schema':'sri-cell-complex-v3','authority':CHiodo,'implementation':SOURCE,'profiles':{}}
-for profile,original in data['variants'].items():
-    tri={t['i']:t for t in original['triangles']}
-    def baw(i):
-        t=tri[i];return t['base_y'],t['apex_y'],t['half_width']
-    b3,a3,w3=baw(3);b7,a7,w7=baw(7)
+def condition_residuals(tri):
+    """Return the 21 Chiodo residuals for float or Decimal triangle fields."""
+    rows=[]
+    b3,a3,w3=(tri[3][k] for k in ('base_y','apex_y','half_width'))
+    b7,a7,w7=(tri[7][k] for k in ('base_y','apex_y','half_width'))
     c3=(w3*w3+b3*b3-a3*a3)/(2*(b3-a3));c7=(w7*w7+b7*b7-a7*a7)/(2*(b7-a7))
-    checks=[abs(c3-c7),abs(abs(a3-c3)-abs(a7-c7))]
+    rows.extend([('i:center',abs(c3-c7)),('i:radius',abs(abs(a3-c3)-abs(a7-c7)))])
     for first,second in CHiodo['condition_ii']:
-        i,j=int(first[1:]),int(second[1:]);checks.append(abs(tri[i]['apex_y']-tri[j]['base_y']))
+        i,j=int(first[1:]),int(second[1:]);rows.append((f'ii:{first}:{second}',abs(tri[i]['apex_y']-tri[j]['base_y'])))
     for down,base,up in CHiodo['condition_iii']:
         i,j,k=int(down[1:]),int(base[1:]),int(up[1:]);y=tri[j]['base_y']
         xi=tri[i]['half_width']*(y-tri[i]['apex_y'])/(tri[i]['base_y']-tri[i]['apex_y'])
         xk=tri[k]['half_width']*(y-tri[k]['apex_y'])/(tri[k]['base_y']-tri[k]['apex_y'])
-        checks.append(abs(xi-xk))
-    chiodo_float64={'checks':len(checks),'maximum_residual':max(checks),'tolerance':1e-12,'pass':max(checks)<1e-12}
+        rows.append((f'iii:{down}:{base}:{up}',abs(xi-xk)))
+    return rows
+
+out={'schema':'sri-cell-complex-v3','authority':CHiodo,'implementation':SOURCE,'profiles':{}}
+for profile,original in data['variants'].items():
+    tri={t['i']:t for t in original['triangles']}
+    float_rows=condition_residuals(tri);checks=[v for _,v in float_rows]
+    symmetry=[]
+    for t in original['triangles']:
+        left,right,apex=t['points']
+        symmetry.extend([abs(left[0]+right[0]),abs(left[1]-right[1]),abs(apex[0])])
+    chiodo_float64={'checks':len(checks),'side':'right; left follows from separately checked bilateral symmetry','maximum_residual':max(checks),'tolerance':1e-12,'residuals':[{'id':k,'value':v} for k,v in float_rows],'pass':max(checks)<1e-12}
+    bilateral_symmetry={'checks':len(symmetry),'maximum_residual':max(symmetry),'tolerance':1e-12,'pass':max(symmetry)<1e-12}
     assert chiodo_float64['pass'],chiodo_float64
+    assert bilateral_symmetry['pass'],bilateral_symmetry
+    with localcontext() as ctx:
+        ctx.prec=80
+        exact_tri={t['i']:{k:Decimal(v) for k,v in t['exact'].items()} for t in original['triangles']}
+        decimal_rows=condition_residuals(exact_tri);decimal_max=max(v for _,v in decimal_rows);decimal_tol=Decimal('1e-35')
+    chiodo_decimal80={'checks':len(decimal_rows),'precision_digits':80,'input_precision':'upstream decimal strings, approximately 40 significant digits','maximum_residual':str(decimal_max),'tolerance':str(decimal_tol),'residuals':[{'id':k,'value':str(v)} for k,v in decimal_rows],'pass':decimal_max<decimal_tol}
+    assert chiodo_decimal80['pass'],chiodo_decimal80
     raw_cells=[]
     for oi,c in enumerate(original['cells']):
         pts=[tuple(p) for p in c['points']]; cx=sum(p[0] for p in pts)/len(pts); cy=sum(p[1] for p in pts)/len(pts)
         raw_cells.append({'original_index':oi,'points':pts,'depth':c['depth'],'sides':c['sides'],'area':c['area'],'canonical':bool(c['in_yantra']),'centroid':[cx,cy]})
-    unique={q(p):p for c in raw_cells for p in c['points']}
+    buckets={}
+    for c in raw_cells:
+        for p in c['points']:buckets.setdefault(q(p),[]).append(p)
+    assert all(max((math.dist(a,b) for a in ps for b in ps),default=0)<=2*TOL for ps in buckets.values()),'quantization merged distinct vertices'
+    unique={key:points[0] for key,points in buckets.items()}
     ordered=sorted(unique.values(),key=lambda p:(-p[1],p[0]))
     vertices=[{'id':f'{profile}:VERTEX:{i:02d}','point':list(p),'parent_incidence':[],'native_types':[]} for i,p in enumerate(ordered,1)]
     vid={q(v['point']):v['id'] for v in vertices}
@@ -100,6 +122,8 @@ for profile,original in data['variants'].items():
         c['points']=[list(p) for p in c['points']]
     V,E,F=len(vertices),len(edges),len(raw_cells)
     assert (V,E,F)==(69,142,74),(V,E,F)
+    assert all(e['generated_by'] for e in edges),'atomic edge missing generating-parent provenance'
+    assert all(1<=len(e['cells'])<=2 for e in edges),'non-planar edge/cell incidence'
     assert E-V+1==F
     canonical=[c for c in raw_cells if c['canonical']]
     assert len(canonical)==43 and {d:sum(c['depth']==d for c in canonical) for d in RINGS}=={1:14,3:10,5:10,7:8,9:1}
@@ -107,6 +131,7 @@ for profile,original in data['variants'].items():
     for t in original['triangles']:
         x=dict(t);x['id']=f'{profile}:PARENT:T{t["i"]:02d}';parents.append(x)
     label='Huet parameter realization of Chiodo conditions' if profile=='huet' else 'Rational experimental realization (upstream label: traditional)'
-    out['profiles'][profile]={'label':label,'parameters':original['parameters'],'layout':original['layout'],'avaranas':original['avaranas'],'bindu':{'id':f'{profile}:A9:POINT:01','point':original['bindu']},'parents':parents,'vertices':vertices,'edges':edges,'cells':sorted(raw_cells,key=lambda c:c['id']),'canonical_face_ids':sorted(c['id'] for c in canonical),'verification':{**original['verification'],'chiodo_float64':chiodo_float64,'compiled_topology':{'vertices':V,'edges':E,'bounded_cells':F,'canonical_triangles':43,'euler_pass':True}}}
-(ROOT/'geometry/compiled.json').write_text(json.dumps(out,separators=(',',':')))
+    out['profiles'][profile]={'label':label,'parameters':original['parameters'],'layout':original['layout'],'avaranas':original['avaranas'],'bindu':{'id':f'{profile}:A9:POINT:01','point':original['bindu']},'parents':parents,'vertices':vertices,'edges':edges,'cells':sorted(raw_cells,key=lambda c:c['id']),'canonical_face_ids':sorted(c['id'] for c in canonical),'verification':{**original['verification'],'chiodo_float64':chiodo_float64,'chiodo_decimal80':chiodo_decimal80,'bilateral_symmetry':bilateral_symmetry,'compiled_topology':{'vertices':V,'edges':E,'bounded_cells':F,'canonical_triangles':43,'euler_pass':True}}}
+target=ROOT/'geometry/compiled.json';temporary=target.with_suffix('.json.tmp')
+temporary.write_text(json.dumps(out,separators=(',',':')),encoding='utf-8');temporary.replace(target)
 print('Compiled '+', '.join(f'{k}: V={len(v["vertices"])} E={len(v["edges"])} F={len(v["cells"])} canonical={len(v["canonical_face_ids"])}' for k,v in out['profiles'].items()))

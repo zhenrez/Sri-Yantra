@@ -118,6 +118,11 @@ try {
         throw "Seal mismatch. Expected $ExpectedSeal but rebuilt $ActualSeal. The server was not launched."
     }
 
+    & $VenvPython -I (Join-Path $Root 'audit_workbench.py')
+    if ($LASTEXITCODE -ne 0) { throw 'Artifact audit failed.' }
+    & $VenvPython -I -m unittest discover -s (Join-Path $Root 'tests') -v
+    if ($LASTEXITCODE -ne 0) { throw 'Workbench tests failed.' }
+
     if ($VerifyOnly) {
         Write-Host "`nWindows bootstrap verification passed: $ActualSeal" -ForegroundColor Green
         exit 0

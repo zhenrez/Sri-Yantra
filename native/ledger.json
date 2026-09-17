@@ -23,12 +23,12 @@
     {"id":"chiodo-2021","authority":"PRIMARY_MATHEMATICAL","title":"On the construction of the Sri Yantra","author":"Alessandro Chiodo","doi":"10.5802/crmath.163","status":"INSPECTED_LOCAL_PDF"},
     {"id":"hardik-1da047f","authority":"IMPLEMENTATION","title":"TheHardikDewra/sri-yantra","commit":"1da047f4641a9ea95457080801f2438e634d668a","status":"CODE_AND_EXPORT_INSPECTED"},
     {"id":"syg-syd-2018","authority":"COMPARISON_ARTIFACT","title":"Sri Yantra Graph and Dual","status":"INSPECTED_INTERNAL_INCONSISTENCY"},
-    {"id":"huet-2002","authority":"PRIMARY_MATHEMATICAL","title":"Sri Yantra Geometry","status":"REFERENCED_BY_CHIODO_AND_IMPLEMENTATION"},
+    {"id":"huet-2002","authority":"PRIMARY_CITATION_NOT_INSPECTED","title":"Sri Yantra Geometry","status":"REFERENCED_BY_CHIODO_AND_IMPLEMENTATION_ONLY"},
     {"id":"kulaichev-1984","authority":"PRIMARY_REQUIRED","title":"Sriyantra and its Mathematical Properties","status":"NOT_INGESTED_THIS_BUILD"},
     {"id":"mahesh","authority":"PRIMARY_REQUIRED","title":"Mahesh construction / Marma-Sthana incidence source","status":"NOT_INGESTED_THIS_BUILD"}
   ],
   "claims": [
-    {"id":"c-family","layer":"G_INTRINSIC","class":"GEOMETRIC","modal_status":"NECESSARY","realization_scope":"Chiodo minimal-concurrency model","source":"chiodo-2021","exactness":"EXACT","statement":"Up to rescaling and translation, minimally concurrent realizations form a four-parameter family."},
+    {"id":"c-family","layer":"G_INTRINSIC","class":"GEOMETRIC","modal_status":"NECESSARY","realization_scope":"Chiodo minimal-concurrency model","source":"chiodo-2021","exactness":"SOURCE_STATED_PARAMETERIZATION","statement":"Up to rescaling and congruence in Chiodo's normalized setting, minimally concurrent realizations form a four-parameter family."},
     {"id":"c-circle","layer":"G_INTRINSIC","class":"GEOMETRIC","modal_status":"NECESSARY","realization_scope":"Chiodo minimal-concurrency family","source":"chiodo-2021","exactness":"EXACT","statement":"Generating triangles t3 and t7 share a circumcircle."},
     {"id":"c-apex-base","layer":"G_INTRINSIC","class":"GEOMETRIC","modal_status":"NECESSARY","realization_scope":"Chiodo minimal-concurrency family","source":"chiodo-2021","exactness":"EXACT","statement":"Seven specified triangle apices coincide with base points of other generating triangles."},
     {"id":"c-concurrence","layer":"G_INTRINSIC","class":"GEOMETRIC","modal_status":"NECESSARY","realization_scope":"Chiodo minimal-concurrency family","source":"chiodo-2021","exactness":"EXACT","statement":"Twelve specified downward-leg/base/upward-leg triples concur on each side of the symmetry axis."},

@@ -1,0 +1,28 @@
+name: Reproducibility and API checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.13']
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Rebuild and audit sealed artifacts
+        run: python -I audit_workbench.py --rebuild
+      - name: Run API and database tests
+        run: python -I -m unittest discover -s tests -v
