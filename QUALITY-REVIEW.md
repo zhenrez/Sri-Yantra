@@ -38,6 +38,10 @@ python -I -m unittest discover -s tests -v
 
 Both commands are standard-library-only. GitHub workflows exercise Python 3.11 and 3.13 on Linux and the isolated launcher path on Windows.
 
+The bounded run is registered in
+[`evidence/computation-audit-2026-09-17.json`](evidence/computation-audit-2026-09-17.json),
+pinned to reviewed commit `3c4e5ebe1154dd959014c431a0c923ffdd82d98e`.
+
 ## Residual risks
 
 - The coordinate and cell export is pinned upstream evidence; the upstream 60-digit solver and its 49-check report have not been vendored and independently rerun.

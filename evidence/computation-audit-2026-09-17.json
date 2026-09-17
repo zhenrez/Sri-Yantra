@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "claim_id": "sri-pinned-profiles-v-e-f-chiodo-residuals-v1",
+  "repository": {
+    "commit": "3c4e5ebe1154dd959014c431a0c923ffdd82d98e",
+    "dirty": false
+  },
+  "command": "python3 -I audit_workbench.py --rebuild && python3 -I -m unittest discover -s tests -v",
+  "environment": {
+    "software": [
+      "CPython 3.12.14",
+      "Linux 6.18.44",
+      "Python standard library only"
+    ],
+    "hardware": "x86_64 managed Linux runner"
+  },
+  "mathematics": {
+    "assertion_tested": "For each of the two pinned coordinate exports, the compiler reconstructs V=69, E=142, and 74 bounded cells, including 43 canonical triangular regions in 14/10/10/8/1 enclosures; all 21 encoded Chiodo-condition residuals pass the declared float64 and Decimal80 gates, and all 27 bilateral-symmetry checks pass.",
+    "coefficient_domain": "IEEE-754 binary64 geometry plus Decimal arithmetic at precision 80 from approximately 40-digit source coordinate strings; topology quantization tolerance 1e-9.",
+    "conventions": "Bounded faces are recovered from the planar atomic-edge embedding; canonical triangular regions are classified geometrically; residuals are evaluated with the labels and line-incidence conventions encoded in compile_geometry.py.",
+    "inputs": [
+      "geometry/source.json sha256 5523302eef4fae8322aa69db59cf2a653342ee43792c7dfd2f388c53cad9dafa",
+      "compile_geometry.py at commit 3c4e5ebe1154dd959014c431a0c923ffdd82d98e",
+      "audit_workbench.py at commit 3c4e5ebe1154dd959014c431a0c923ffdd82d98e",
+      "native/ledger.json",
+      "native/provenance-map.json",
+      "preregistration/sri-native-protocol-v1.json",
+      "preregistration/sri-native-seal-v1.json"
+    ],
+    "bounds": {
+      "profiles": 2,
+      "vertices_per_profile": 69,
+      "edges_per_profile": 142,
+      "bounded_cells_per_profile": 74,
+      "canonical_triangles_per_profile": 43,
+      "chiodo_residual_checks_per_profile": 21,
+      "symmetry_checks_per_profile": 27
+    },
+    "non_claims": [
+      "Does not prove uniqueness of either realization.",
+      "Does not establish the result over Chiodo's full four-parameter family.",
+      "Does not independently rerun or authenticate the upstream 60-digit solver and its 49-check report.",
+      "Does not resolve the printed SYG numbering or its 140-edge versus 142-edge inconsistency.",
+      "Does not authenticate traditional symbolic or deity assignments."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-17T01:27:03Z",
+    "runtime_seconds": 0.735126,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "geometry/compiled.json",
+      "sha256": "fbea34feb4b6f959f708469726526aef29b3d574691fce2fb9c527a4529b218a"
+    },
+    {
+      "path": "preregistration/sri-native-seal-v1.json",
+      "sha256": "59a28e8c18bcd8e51f83e47118732cccb71b0c9d3337952ba428761c47ace655"
+    }
+  ],
+  "checks": [
+    "Rebuild produced byte-identical compiled geometry and native seal.",
+    "Source hashes, stable identifiers, profile counts, and seal entries matched.",
+    "Planar incidence reciprocity, connected dual graph, and Euler identity passed.",
+    "All 142 atomic edges per profile retained generating-parent provenance.",
+    "All 21 float64 and Decimal80 residual checks per profile passed their declared gates.",
+    "All 27 bilateral-symmetry checks per profile passed.",
+    "Research contract, quarantine status, and namespace firewall remained consistent.",
+    "The standard-library unit-test suite passed."
+  ],
+  "result": "pass",
+  "residual_risks": [
+    "The upstream coordinate export and solver were not independently regenerated.",
+    "Decimal80 reuses the upstream approximately 40-digit coordinate strings and therefore tests arithmetic stability, not coordinate independence.",
+    "The 1e-9 topology quantization is asserted safe only for the two pinned profiles.",
+    "The printed SYG/SYD graph mismatch remains unresolved and quarantined.",
+    "The local interface has not completed a Windows visual and assistive-technology audit."
+  ]
+}
