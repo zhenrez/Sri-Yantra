@@ -120,7 +120,7 @@ try {
 
     & $VenvPython -I (Join-Path $Root 'audit_workbench.py')
     if ($LASTEXITCODE -ne 0) { throw 'Artifact audit failed.' }
-    & $VenvPython -I -m unittest discover -s (Join-Path $Root 'tests') -v
+    & $VenvPython -I -W 'default::ResourceWarning' -m unittest discover -s (Join-Path $Root 'tests') -v
     if ($LASTEXITCODE -ne 0) { throw 'Workbench tests failed.' }
 
     if ($VerifyOnly) {
