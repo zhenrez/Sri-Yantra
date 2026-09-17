@@ -28,8 +28,10 @@ class WorkbenchTests(unittest.TestCase):
     def test_api_and_database_migration_contract(self):
         with tempfile.TemporaryDirectory() as temp:
             original_db = server.DB
-            server.DB = Path(temp) / "test.sqlite3"
+            test_db = Path(temp) / "test.sqlite3"
+            server.DB = test_db
             httpd = None
+            thread = None
             try:
                 server.init()
                 httpd = ThreadingHTTPServer(("127.0.0.1", 0), QuietHandler)
@@ -67,8 +69,17 @@ class WorkbenchTests(unittest.TestCase):
                 self.assertEqual(len(state["event_participants"]), 3)
             finally:
                 if httpd:
-                    httpd.shutdown(); httpd.server_close()
+                    httpd.shutdown()
+                    httpd.server_close()
+                if thread:
+                    thread.join(timeout=5)
+                    self.assertFalse(thread.is_alive(), "HTTP test server did not stop")
                 server.DB = original_db
+                # This is deliberately stronger than relying on
+                # TemporaryDirectory cleanup. Windows rejects this unlink if
+                # any request handler leaked a SQLite connection.
+                if test_db.exists():
+                    test_db.unlink()
 
     @staticmethod
     def request(url, data=None, headers=None, method=None, expected_error=False):
