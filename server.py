@@ -1,15 +1,26 @@
 """Local-only static workbench and SQLite overlay API; no external dependencies."""
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
+from contextlib import contextmanager
 import argparse, json, sqlite3, urllib.parse, uuid
 
 ROOT = Path(__file__).parent
 DB = ROOT / 'workbench.sqlite3'
+
+@contextmanager
 def connection():
     db = sqlite3.connect(DB)
-    db.row_factory = sqlite3.Row
-    db.execute('PRAGMA foreign_keys=ON')
-    return db
+    try:
+        db.row_factory = sqlite3.Row
+        db.execute('PRAGMA foreign_keys=ON')
+        yield db
+        db.commit()
+    except BaseException:
+        db.rollback()
+        raise
+    finally:
+        db.close()
+
 def init():
     with connection() as db:
         db.executescript('''CREATE TABLE IF NOT EXISTS overlays(id TEXT PRIMARY KEY,name TEXT NOT NULL);
